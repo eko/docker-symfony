@@ -1,0 +1,38 @@
+application:
+    image: code
+    volumes:
+        - "symfony:/var/www/symfony"
+        - "logs/symfony:/var/www/symfony/app/logs"
+    tty: true
+db:
+    image: mysql
+    ports:
+        - "3306:3306"
+    environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: symfony
+        MYSQL_USER: root
+        MYSQL_PASSWORD: root
+php:
+    image: php-fpm
+    expose:
+        - "9000:9000"
+    volumes_from:
+        - application
+    environment:
+        XDEBUG_HOST: 192.168.1.194
+        XDEBUG_PORT: 9000
+        XDEBUG_REMOTE_MODE: req
+    links:
+        - db
+nginx:
+    image: nginx
+    ports:
+        - "80:80"
+    links:
+        - php
+    volumes_from:
+        - application
+    volumes:
+        - "logs/nginx/:/var/log/nginx"
+    hostname: symfony.dev
