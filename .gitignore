@@ -1,2 +1,2 @@
-# Ignore logs shared volume directory
 /logs
+/symfony

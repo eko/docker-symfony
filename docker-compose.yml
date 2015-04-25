@@ -19,10 +19,6 @@ php:
         - "9000:9000"
     volumes_from:
         - application
-    environment:
-        XDEBUG_HOST: 192.168.1.194
-        XDEBUG_PORT: 9000
-        XDEBUG_REMOTE_MODE: req
     links:
         - db
 nginx:
