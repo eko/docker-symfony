@@ -13,6 +13,14 @@ $ git clone git@github.com:eko/docker-symfony.git
 
 Next, put your Symfony application into `symfony` folder and do not forget to add `symfony.dev` in your `/etc/hosts` file.
 
+Now, you have to build your Docker images:
+
+```bash
+$ docker build -t symfony/code code
+$ docker build -t symfony/php-fpm php-fpm
+$ docker build -t symfony/nginx nginx
+```
+
 Then, run:
 
 ```bash

@@ -9,6 +9,8 @@ ADD symfony.ini /etc/php5/cli/conf.d/
 
 ADD symfony.pool.conf /etc/php5/fpm/pool.d/
 
+RUN usermod -u 1000 www-data
+
 CMD ["php5-fpm", "-F"]
 
 EXPOSE 9000
