@@ -48,9 +48,11 @@ This results in the following running containers:
         docker_php_1           php5-fpm -F             Up      9000/tcp
 ```
 
-# Read logs
+# Read logs / Kibana
 
 You can access Nginx and Symfony application logs in the following directories into your host machine:
 
 * `logs/nginx`
 * `logs/symfony`
+
+You can also uncomment the `elk` container section in `docker-compose.yml` in order to enable the [willdurand/elk](https://www.github.com/willdurand/docker-elk) image.

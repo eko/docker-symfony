@@ -31,3 +31,13 @@ nginx:
         - application
     volumes:
         - logs/nginx/:/var/log/nginx
+#elk:
+#    image: willdurand/elk
+#    ports:
+#        - "81:80"
+#    volumes:
+#        - elk/logstash:/etc/logstash
+#        - elk/logstash/patterns:/opt/logstash/patterns
+#    volumes_from:
+#        - php
+#        - nginx
