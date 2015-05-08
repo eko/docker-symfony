@@ -34,25 +34,29 @@ You are done, you can visit your Symfony application in `http://symfony.dev`
 * `application`: This is the Symfony application code container,
 * `db`: This is the MySQL database container (can be changed to postgresql or whatever in `docker-compose.yml` file),
 * `php`: This is the PHP-FPM container in which the application volume is mounted,
-* `nginx`: This is the Nginx webserver container in which application volume is mounted too.
+* `nginx`: This is the Nginx webserver container in which application volume is mounted too,
+* `elk`: This is a ELK stack container which uses Logstash to collect logs, send them into Elasticsearch and visualize them with Kibana.
 
 This results in the following running containers:
 
 ```bash
 > $ docker-compose ps
-        Name                  Command          State              Ports
-        ----------------------------------------------------------------------------------
-        docker_application_1   /bin/bash               Up
-        docker_db_1            /entrypoint.sh mysqld   Up      0.0.0.0:3306->3306/tcp
-        docker_nginx_1         nginx                   Up      443/tcp, 0.0.0.0:80->80/tcp
-        docker_php_1           php5-fpm -F             Up      9000/tcp
+        Name                      Command               State              Ports
+        -------------------------------------------------------------------------------------------
+        docker_application_1   /bin/bash                        Up
+        docker_db_1            /entrypoint.sh mysqld            Up      0.0.0.0:3306->3306/tcp
+        docker_elk_1           /usr/bin/supervisord -n -c ...   Up      0.0.0.0:81->80/tcp
+        docker_nginx_1         nginx                            Up      443/tcp, 0.0.0.0:80->80/tcp
+        docker_php_1           php5-fpm -F                      Up      9000/tcp
 ```
 
-# Read logs / Kibana
+# Read logs
 
 You can access Nginx and Symfony application logs in the following directories into your host machine:
 
 * `logs/nginx`
 * `logs/symfony`
 
-You can also uncomment the `elk` container section in `docker-compose.yml` in order to enable the [willdurand/elk](https://www.github.com/willdurand/docker-elk) image.
+# Use Kibana!
+
+You can also use Kibana to visualize Nginx & Symfony logs by visiting `http://symfony.dev:81`.
