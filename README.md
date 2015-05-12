@@ -13,7 +13,15 @@ $ git clone git@github.com:eko/docker-symfony.git
 
 Next, put your Symfony application into `symfony` folder and do not forget to add `symfony.dev` in your `/etc/hosts` file.
 
-Now, you have to build your Docker images:
+Then, run:
+
+```bash
+$ docker-compose up
+```
+
+You are done, you can visite your Symfony application on the following URL: `http://symfony.dev` (and access Kibana on `http://symfony.dev:81`)
+
+Optionally, you can build your Docker images separately by running:
 
 ```bash
 $ docker build -t symfony/code code
@@ -21,15 +29,9 @@ $ docker build -t symfony/php-fpm php-fpm
 $ docker build -t symfony/nginx nginx
 ```
 
-Then, run:
-
-```bash
-$ docker-compose up
-```
-
-You are done, you can visit your Symfony application in `http://symfony.dev`
-
 # How it works?
+
+Here are the `docker-compose` built images:
 
 * `application`: This is the Symfony application code container,
 * `db`: This is the MySQL database container (can be changed to postgresql or whatever in `docker-compose.yml` file),
