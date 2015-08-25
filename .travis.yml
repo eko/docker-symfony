@@ -10,5 +10,10 @@ before_install:
   - sudo mv docker-compose /usr/local/bin
 
 script:
+  - docker build -t symfony/code code
+  - docker build -t symfony/php-fpm php-fpm
+  - docker build -t symfony/nginx nginx
+  - docker pull mysql
+  - docker pull willdurand/elk
   - docker-compose up
 
