@@ -1,5 +1,5 @@
 application:
-    image: symfony/code
+    build: code
     volumes:
         - ./symfony:/var/www/symfony
         - ./logs/symfony:/var/www/symfony/app/logs
@@ -14,7 +14,7 @@ db:
         MYSQL_USER: root
         MYSQL_PASSWORD: root
 php:
-    image: symfony/php-fpm
+    build: php-fpm
     expose:
         - 9000:9000
     volumes_from:
@@ -22,7 +22,7 @@ php:
     links:
         - db
 nginx:
-    image: symfony/nginx
+    build: nginx
     ports:
         - 80:80
     links:

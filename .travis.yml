@@ -8,12 +8,8 @@ before_install:
   - curl -L https://github.com/docker/compose/releases/download/1.4.0/docker-compose-`uname -s`-`uname -m` > docker-compose
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
+  - sudo iptables -N DOCKER # fix issue https://github.com/travis-ci/travis-ci/issues/4778
 
 script:
-  - docker build -t symfony/code code
-  - docker build -t symfony/php-fpm php-fpm
-  - docker build -t symfony/nginx nginx
-  - docker pull mysql
-  - docker pull willdurand/elk
   - docker-compose up
 
