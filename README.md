@@ -24,12 +24,10 @@ $ docker-compose up
 
 You are done, you can visite your Symfony application on the following URL: `http://symfony.dev` (and access Kibana on `http://symfony.dev:81`)
 
-Optionally, you can build your Docker images separately by running:
+_Note :_ you can rebuild all Docker images by running:
 
 ```bash
-$ docker build -t symfony/code code
-$ docker build -t symfony/php-fpm php-fpm
-$ docker build -t symfony/nginx nginx
+$ docker-compose build
 ```
 
 # How it works?
