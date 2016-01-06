@@ -15,7 +15,7 @@ db:
         MYSQL_PASSWORD: root
 php:
     build: php-fpm
-    expose:
+    ports:
         - 9000:9000
     volumes_from:
         - application
