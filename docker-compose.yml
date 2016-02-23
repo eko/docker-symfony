@@ -1,7 +1,7 @@
 application:
     build: code
     volumes:
-        - ./symfony:/var/www/symfony
+        - ./../perso/symfony:/var/www/symfony
         - ./logs/symfony:/var/www/symfony/app/logs
     tty: true
 db:
@@ -9,10 +9,10 @@ db:
     ports:
         - 3306:3306
     environment:
-        MYSQL_ROOT_PASSWORD: root
+        MYSQL_ROOT_PASSWORD: test
         MYSQL_DATABASE: symfony
-        MYSQL_USER: root
-        MYSQL_PASSWORD: root
+        MYSQL_USER: test
+        MYSQL_PASSWORD: test
 php:
     build: php-fpm
     ports:
