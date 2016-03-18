@@ -11,8 +11,8 @@ db:
     environment:
         MYSQL_ROOT_PASSWORD: root
         MYSQL_DATABASE: symfony
-        MYSQL_USER: root
-        MYSQL_PASSWORD: root
+        MYSQL_USER: symfony
+        MYSQL_PASSWORD: symfony
 php:
     build: php-fpm
     ports:
