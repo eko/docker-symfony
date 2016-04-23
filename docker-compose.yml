@@ -1,11 +1,5 @@
 version: '2'
 services:
-    application:
-        build: ./code
-        volumes:
-            - ./symfony:/var/www/symfony
-            - ./logs/symfony:/var/www/symfony/app/logs
-        tty: true
     db:
         image: mysql
         ports:
@@ -19,8 +13,9 @@ services:
         build: ./php-fpm
         expose:
             - "9000"
-        volumes_from:
-            - application
+        volumes:
+            - ./symfony/var/www/symfony
+            - ./logs/symfony:/var/www/symfony/app/logs
         links:
             - db
     nginx:
@@ -30,7 +25,7 @@ services:
         links:
             - php
         volumes_from:
-            - application
+            - php
         volumes:
             - ./logs/nginx/:/var/log/nginx
     elk:
@@ -41,6 +36,5 @@ services:
             - ./elk/logstash:/etc/logstash
             - ./elk/logstash/patterns:/opt/logstash/patterns
         volumes_from:
-            - application
             - php
             - nginx
