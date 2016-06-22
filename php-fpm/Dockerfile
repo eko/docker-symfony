@@ -28,6 +28,6 @@ ADD symfony.ini /etc/php5/cli/conf.d/
 
 ADD symfony.pool.conf /etc/php5/fpm/pool.d/
 
-CMD ["php5-fpm", "-F"]
+CMD ["php-fpm", "-F"]
 
 EXPOSE 9000
