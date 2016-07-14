@@ -63,3 +63,7 @@ You can access Nginx and Symfony application logs in the following directories o
 # Use Kibana!
 
 You can also use Kibana to visualize Nginx & Symfony logs by visiting `http://symfony.dev:81`.
+
+# Code license
+
+You are free to use the code in this repository under the terms of the 0-clause BSD license. LICENSE contains a copy of this license.
