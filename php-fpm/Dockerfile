@@ -5,7 +5,9 @@ MAINTAINER Vincent Composieux <vincent.composieux@gmail.com>
 RUN apk add --update \
     php5-fpm \
     php5-apcu \
+    php5-ctype \
     php5-curl \
+    php5-dom \
     php5-gd \
     php5-iconv \
     php5-imagick \
