@@ -9,6 +9,8 @@ RUN apk add --update \
     php5-curl \
     php5-dom \
     php5-gd \
+    php5-cli \
+    php5-ctype \
     php5-iconv \
     php5-imagick \
     php5-json \
@@ -19,17 +21,21 @@ RUN apk add --update \
     php5-openssl \
     php5-pdo \
     php5-pdo_mysql \
+    php5-common \
+    php5-dev \
     php5-mysqli \
     php5-xml \
-    php5-zlib
+    php5-dom \
+    php5-zlib 
 
 RUN rm -rf /var/cache/apk/* && rm -rf /tmp/*
 
 ADD symfony.ini /etc/php5/fpm/conf.d/
 ADD symfony.ini /etc/php5/cli/conf.d/
+ADD symfony.ini /etc/php5/conf.d/
 
 ADD symfony.pool.conf /etc/php5/fpm.d/
 
 CMD ["php-fpm", "-F"]
 
-EXPOSE 9000
+EXPOSE 9001
