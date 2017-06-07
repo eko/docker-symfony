@@ -15,6 +15,5 @@ before_install:
   - mkdir symfony
 
 script:
-  - docker-compose up -d
-  - docker-compose ps
-
+  - docker-compose -f docker-compose.travis.yml up -d
+  - docker-compose -f docker-compose.travis.yml ps
