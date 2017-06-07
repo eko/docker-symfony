@@ -32,4 +32,5 @@ ADD symfony.pool.conf /etc/php5/fpm.d/
 
 CMD ["php-fpm", "-F"]
 
+WORKDIR /var/www/symfony
 EXPOSE 9000
