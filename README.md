@@ -14,7 +14,16 @@ First, clone this repository:
 $ git clone git@github.com:eko/docker-symfony.git
 ```
 
-Next, put your Symfony application into `symfony` folder and do not forget to add `symfony.dev` in your `/etc/hosts` file.
+Add `symfony.dev` in your `/etc/hosts` file.
+
+Either put your Symfony application into `symfony` folder or add `.env` to your symfony project with following content
+```yaml
+COMPOSE_FILE=../docker-symfony/docker-compose.yml
+COMPOSE_PROJECT_NAME=PROJECT_NAME
+LOG_PATH=../PROJECT_NAME/logs
+SRC_PATH=../PROJECT_NAME/src
+XDEBUG_IP_ADDRESS=
+```
 
 Make sure you adjust `database_host` in `parameters.yml` to the database container alias "db"
 
@@ -50,8 +59,22 @@ This results in the following running containers:
         docker_db_1            /entrypoint.sh mysqld            Up      0.0.0.0:3306->3306/tcp
         docker_elk_1           /usr/bin/supervisord -n -c ...   Up      0.0.0.0:81->80/tcp
         docker_nginx_1         nginx                            Up      443/tcp, 0.0.0.0:80->80/tcp
-        docker_php_1           php5-fpm -F                      Up      9000/tcp
+        docker_php_1           php5-fpm -F                      Up      9001/tcp
 ```
+
+# Development
+
+Attach to php container to call compose or symfony.
+
+```bash
+$ docker-compose exec php /bin/sh
+```
+
+## XDebug
+
+* Set local ip in .env, e.g.  `XDEBUG_IP_ADDRESS=10.0.75.1` in .env (on windows/mac use VM IP)
+* In your IDE set XDebug listen port to 9030. Depending on IDE set IP.
+* Use XDebug Helper or similar to start debugging session
 
 # Read logs
 
