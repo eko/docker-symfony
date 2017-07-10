@@ -12,10 +12,12 @@ services:
     php:
         build: ./php-fpm
         expose:
-            - "9000"
+            - "9001"
+        environment:
+          XDEBUG_CONFIG: remote_host=$XDEBUG_IP_ADDRESS remote_port=9030
         volumes:
-            - ./symfony:/var/www/symfony
-            - ./logs/symfony:/var/www/symfony/app/logs
+            - $SRC_PATH:/var/www/symfony
+            - $LOG_PATH/symfony:/var/www/symfony/app/logs
         links:
             - db
     nginx:
@@ -27,7 +29,7 @@ services:
         volumes_from:
             - php
         volumes:
-            - ./logs/nginx/:/var/log/nginx
+            - $LOG_PATH/nginx/:/var/log/nginx
     elk:
         image: willdurand/elk
         ports:
