@@ -1,40 +1,23 @@
 version: '2'
 services:
-    db:
-        image: mysql
-        ports:
-            - "3306:3306"
-        environment:
-            MYSQL_ROOT_PASSWORD: root
-            MYSQL_DATABASE: symfony
-            MYSQL_USER: root
-            MYSQL_PASSWORD: root
-    php:
-        build: ./php-fpm
-        expose:
-            - "9000"
-        volumes:
-            - ./symfony:/var/www/symfony
-            - ./logs/symfony:/var/www/symfony/app/logs
-        links:
-            - db
     nginx:
         build: ./nginx
         ports:
             - "80:80"
-        links:
-            - php
         volumes_from:
-            - php
+            - php5
+            - php7
         volumes:
-            - ./logs/nginx/:/var/log/nginx
-    elk:
-        image: willdurand/elk
-        ports:
-            - "81:80"
+            - ../logs/nginx:/var/log/nginx
+    php5:
+        build: ./php5
+        extra_hosts:
+            - api.eelly.dev:172.19.0.3
         volumes:
-            - ./elk/logstash:/etc/logstash
-            - ./elk/logstash/patterns:/opt/logstash/patterns
-        volumes_from:
-            - php
-            - nginx
+            - ..:/var/www
+    php7:
+        build: ./php7
+        extra_hosts:
+            - api.eelly.dev:172.19.0.3
+        volumes:
+            - ..:/var/www
