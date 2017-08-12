@@ -1,0 +1,3 @@
+FROM mongo:3
+
+MAINTAINER runphp <runphp@qq.com>

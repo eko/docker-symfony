@@ -1,23 +1,43 @@
-version: '2'
+version: '3'
 services:
     nginx:
         build: ./nginx
         ports:
             - "80:80"
-        volumes_from:
+        depends_on:
             - php5
             - php7
         volumes:
+            - ..:/var/www
             - ../logs/nginx:/var/log/nginx
     php5:
         build: ./php5
-        extra_hosts:
-            - api.eelly.dev:172.19.0.3
         volumes:
             - ..:/var/www
     php7:
         build: ./php7
+        networks:
+            - app_net
+        expose:
+            - "9000"
         extra_hosts:
-            - api.eelly.dev:172.19.0.3
+            - api.eelly.dev:172.18.0.4
         volumes:
             - ..:/var/www
+    redis:
+        build: ./redis
+        ports:
+            - "6379:6379"
+    mongo:
+        build: ./mongo
+        ports:
+             - "27017:27017"
+    mariadb:
+        build: ./mariadb
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: mariadb
+            MYSQL_USER: mariadb
+            MYSQL_PASSWORD: mariadb
