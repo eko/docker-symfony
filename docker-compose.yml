@@ -16,8 +16,6 @@ services:
             - ..:/var/www
     php7:
         build: ./php7
-        networks:
-            - app_net
         expose:
             - "9000"
         extra_hosts:
