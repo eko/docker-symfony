@@ -1,4 +1,4 @@
-0BSD license
+## 0BSD license
 
 Copyright (C) 2006 by Rob Landley <rob@landley.net>
 
