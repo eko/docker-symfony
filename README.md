@@ -4,7 +4,7 @@ docker-symfony
 [![Build Status](https://secure.travis-ci.org/eko/docker-symfony.png?branch=master)](http://travis-ci.org/eko/docker-symfony)
 
 
-Just a little Docker POC in order to have a complete stack for running Symfony into Docker containers using docker-compose tool.
+This is a complete stack for running Symfony 4 (latest version: Flex) into Docker containers using docker-compose tool.
 
 # Installation
 
@@ -45,12 +45,12 @@ This results in the following running containers:
 
 ```bash
 > $ docker-compose ps
-        Name                      Command               State              Ports
-        -------------------------------------------------------------------------------------------
-        docker_db_1            /entrypoint.sh mysqld            Up      0.0.0.0:3306->3306/tcp
-        docker_elk_1           /usr/bin/supervisord -n -c ...   Up      0.0.0.0:81->80/tcp
-        docker_nginx_1         nginx                            Up      443/tcp, 0.0.0.0:80->80/tcp
-        docker_php_1           php5-fpm -F                      Up      9000/tcp
+        Name                       Command               State              Ports
+--------------------------------------------------------------------------------------------
+dockersymfony_db_1      docker-entrypoint.sh mysqld      Up      0.0.0.0:3306->3306/tcp
+dockersymfony_elk_1     /usr/bin/supervisord -n -c ...   Up      0.0.0.0:81->80/tcp
+dockersymfony_nginx_1   nginx                            Up      443/tcp, 0.0.0.0:80->80/tcp
+dockersymfony_php_1     php-fpm7 -F                      Up      0.0.0.0:9000->9000/tcp
 ```
 
 # Read logs
