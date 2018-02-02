@@ -1,14 +1,21 @@
 version: '2'
 services:
     db:
-        image: mysql
+        build:
+            context: ./db
+            args:
+                CHAR_SET_SERVER: ${CHAR_SET_SERVER}
+                COLLATION_SERVER: ${COLLATION_SERVER}
+                DEFAULT_CHAR_SET: ${DEFAULT_CHAR_SET}
         ports:
             - "3306:3306"
         environment:
-            MYSQL_ROOT_PASSWORD: root
-            MYSQL_DATABASE: symfony
-            MYSQL_USER: symfony
-            MYSQL_PASSWORD: symfony
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+        volumes:
+            - ./data:/var/lib/mysql
     php:
         build: ./php-fpm
         ports:
