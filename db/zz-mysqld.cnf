@@ -1,0 +1,7 @@
+[mysqld]
+character-set-server=#CHAR_SET_SERVER#
+collation-server=#COLLATION_SERVER#
+skip-grant-tables
+
+[client]
+default-character-set=#DEFAULT_CHAR_SET#
