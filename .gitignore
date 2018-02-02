@@ -1,2 +1,10 @@
 /logs
 /symfony
+
+# phpstorm
+/.idea
+
+.env
+
+#database files
+/data
