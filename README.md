@@ -14,7 +14,7 @@ First, clone this repository:
 $ git clone https://github.com/eko/docker-symfony.git
 ```
 
-Next, put your Symfony application into `symfony` folder and do not forget to add `symfony.dev` in your `/etc/hosts` file.
+Next, put your Symfony application into `symfony` folder and do not forget to add `symfony.localhost` in your `/etc/hosts` file.
 
 Make sure you adjust `database_host` in `parameters.yml` to the database container alias "db"
 
@@ -24,7 +24,7 @@ Then, run:
 $ docker-compose up
 ```
 
-You are done, you can visit your Symfony application on the following URL: `http://symfony.dev` (and access Kibana on `http://symfony.dev:81`)
+You are done, you can visit your Symfony application on the following URL: `http://symfony.localhost` (and access Kibana on `http://symfony.localhost:81`)
 
 _Note :_ you can rebuild all Docker images by running:
 
@@ -62,7 +62,7 @@ You can access Nginx and Symfony application logs in the following directories o
 
 # Use Kibana!
 
-You can also use Kibana to visualize Nginx & Symfony logs by visiting `http://symfony.dev:81`.
+You can also use Kibana to visualize Nginx & Symfony logs by visiting `http://symfony.localhost:81`.
 
 # Code license
 
