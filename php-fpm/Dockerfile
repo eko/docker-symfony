@@ -25,7 +25,7 @@ RUN apk add --update \
     php7-phar \
     php7-tokenizer \
     php7-session \
-    Php7-simplexml \
+    php7-simplexml \
     php7-xdebug \
     make \
     curl
