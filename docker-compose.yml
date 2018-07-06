@@ -18,6 +18,8 @@ services:
             - ./logs/symfony:/var/www/symfony/var/logs:cached
         links:
             - db
+        extra_hosts:
+            - "docker.host:127.0.0.1"
     nginx:
         build: ./nginx
         ports:
