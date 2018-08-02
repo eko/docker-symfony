@@ -30,9 +30,8 @@ RUN apk add --update \
     make \
     curl
 
-RUN rm -rf /var/cache/apk/* && rm -rf /tmp/*
-
-RUN curl --insecure https://getcomposer.org/composer.phar -o /usr/bin/composer && chmod +x /usr/bin/composer
+RUN rm -rf /var/cache/apk/* && rm -rf /tmp/* && \
+    curl --insecure https://getcomposer.org/composer.phar -o /usr/bin/composer && chmod +x /usr/bin/composer
 
 ADD symfony.ini /etc/php7/php-fpm.d/
 ADD symfony.ini /etc/php7/cli/conf.d/
