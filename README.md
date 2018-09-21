@@ -67,7 +67,7 @@ You can check your host machine address by typing `ip addr show` in unix termina
 
 # Execute commands
 
-You can enter container (and perform some actions) by running `docker exec -it docker-symfony_php_1 /bin/bassh` in unix terminal command.
+You can enter container (and perform some actions) by running `docker exec -it docker-symfony_php_1 /bin/bash` in unix terminal command.
 
 # Code license
 
