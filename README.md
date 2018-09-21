@@ -18,10 +18,10 @@ Next, put your Symfony application into `symfony` folder and do not forget to ad
 
 Make sure you adjust `database_host` in `parameters.yml` to the database container alias "db"
 
-Then, run:
+Then, run (put `-d` to run in the background):
 
 ```bash
-$ docker-compose up
+$ docker-compose up -d
 ```
 
 You are done, you can visit your Symfony application on the following URL: `http://symfony.localhost`
@@ -46,8 +46,8 @@ This results in the following running containers:
 > $ docker-compose ps
         Name                       Command               State              Ports
 --------------------------------------------------------------------------------------------
-dockersymfony_db_1      docker-entrypoint.sh mysqld      Up      0.0.0.0:3306->3306/tcp
-dockersymfony_nginx_1   nginx                            Up      443/tcp, 0.0.0.0:80->80/tcp
+dockersymfony_db_1      docker-entrypoint.sh mysqld      Up      0.0.0.0:3308->3306/tcp
+dockersymfony_nginx_1   nginx                            Up      443/tcp, 0.0.0.0:88->80/tcp
 dockersymfony_php_1     php-fpm7 -F                      Up      0.0.0.0:9000->9000/tcp
 ```
 
@@ -62,6 +62,10 @@ You can access Nginx and Symfony application logs in the following directories o
 
 To use xdebug change the line `"docker.host:127.0.0.1"` in docker-compose.yml and replace 127.0.0.1 with your machine ip addres.
 If your IDE default port is not set to 5902 you should do that, too.
+
+You can check your host machine address by typing this command in Unix terminal:
+
+`ip addr show`
 
 # Code license
 
