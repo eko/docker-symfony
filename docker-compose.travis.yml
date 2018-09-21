@@ -8,16 +8,16 @@ services:
             MYSQL_USER: symfony
             MYSQL_PASSWORD: symfony
     php:
-        build: ./php-fpm
+        build: ./docker/php-fpm
         expose:
             - "9000"
         volumes:
-            - ./symfony:/var/www/symfony
-            - ./logs/symfony:/var/www/symfony/var/logs
+            - ./:/var/www/symfony
+            - ./docker/logs/symfony:/var/www/symfony/var/logs
         links:
             - db
     nginx:
-        build: ./nginx
+        build: ./docker/nginx
         ports:
             - "80:80"
         links:
@@ -25,4 +25,4 @@ services:
         volumes_from:
             - php
         volumes:
-            - ./logs/nginx/:/var/log/nginx
+            - ./docker/logs/nginx/:/var/log/nginx

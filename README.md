@@ -14,7 +14,7 @@ First, clone this repository:
 $ git clone https://github.com/rkosinski/docker-symfony.git
 ```
 
-Next, put your Symfony application into `symfony` folder and do not forget to add `symfony.localhost` in your `/etc/hosts` file.
+Next, put your Symfony application into main directory and do not forget to add `symfony.localhost` in your `/etc/hosts` file.
 
 Make sure you adjust `database_host` in `parameters.yml` to the database container alias "db"
 
@@ -55,8 +55,8 @@ dockersymfony_php_1     php-fpm7 -F                      Up      0.0.0.0:9000->9
 
 You can access Nginx and Symfony application logs in the following directories on your host machine:
 
-* `logs/nginx`
-* `logs/symfony`
+* `docker/logs/nginx`
+* `docker/logs/symfony`
 
 # Use xdebug!
 

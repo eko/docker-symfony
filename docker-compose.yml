@@ -11,18 +11,18 @@ services:
             MYSQL_USER: symfony
             MYSQL_PASSWORD: symfony
     php:
-        build: ./php-fpm
+        build: ./docker/php-fpm
         ports:
             - "9000:9000"
         volumes:
-            - ./symfony:/var/www/symfony:cached
-            - ./logs/symfony:/var/www/symfony/var/logs:cached
+            - ./:/var/www/symfony:cached
+            - ./docker/logs/symfony:/var/www/symfony/var/logs:cached
         links:
             - db
         extra_hosts:
             - "docker.host:127.0.0.1"
     nginx:
-        build: ./nginx
+        build: ./docker/nginx
         ports:
             - "88:80"
         links:
@@ -30,4 +30,4 @@ services:
         volumes_from:
             - php
         volumes:
-            - ./logs/nginx/:/var/log/nginx:cached
+            - ./docker/logs/nginx/:/var/log/nginx:cached
