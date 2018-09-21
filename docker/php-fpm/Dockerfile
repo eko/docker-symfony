@@ -27,6 +27,8 @@ RUN apk add --update \
     php7-session \
     php7-simplexml \
     php7-xdebug \
+    vim \
+    bash \
     make \
     curl
 
