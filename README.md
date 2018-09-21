@@ -63,11 +63,11 @@ You can access Nginx and Symfony application logs in the following directories o
 To use xdebug change the line `"docker.host:127.0.0.1"` in docker-compose.yml and replace 127.0.0.1 with your machine ip addres.
 If your IDE default port is not set to 5902 you should do that, too.
 
-You can check your host machine address by typing `ip addr show` in Unix terminal.
+You can check your host machine address by typing `ip addr show` in unix terminal.
 
 # Execute commands
 
-You can enter container (and perform some actions) by running `docker exec -it docker-symfony_php_1 /bin/sh` Unix terminal command.
+You can enter container (and perform some actions) by running `docker exec -it docker-symfony_php_1 /bin/bassh` in unix terminal command.
 
 # Code license
 
