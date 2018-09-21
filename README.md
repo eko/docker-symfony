@@ -1,7 +1,7 @@
 docker-symfony
 ==============
 
-[![Build Status](https://secure.travis-ci.org/eko/docker-symfony.png?branch=master)](http://travis-ci.org/eko/docker-symfony)
+[![Build Status](https://secure.travis-ci.org/rkosinski/docker-symfony.png?branch=master)](http://travis-ci.org/rkosinski/docker-symfony)
 
 
 This is a complete stack for running Symfony 4 (latest version: Flex) into Docker containers using docker-compose tool.
