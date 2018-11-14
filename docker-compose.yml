@@ -13,7 +13,7 @@ services:
     php:
         build: ./php-fpm
         ports:
-            - "9000:9000"
+            - "9000:9001"
         volumes:
             - ./symfony:/var/www/symfony:cached
             - ./logs/symfony:/var/www/symfony/var/log:cached
