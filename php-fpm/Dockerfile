@@ -1,4 +1,4 @@
-FROM alpine:3.8
+FROM alpine
 
 LABEL maintainer="Vincent Composieux <vincent.composieux@gmail.com>"
 
@@ -30,6 +30,7 @@ RUN apk add --update \
     make \
     curl
 
+RUN  apk update && apk add zlib-dev git zip 
 RUN rm -rf /var/cache/apk/* && rm -rf /tmp/* && \
     curl --insecure https://getcomposer.org/composer.phar -o /usr/bin/composer && chmod +x /usr/bin/composer
 

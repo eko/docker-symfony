@@ -41,3 +41,12 @@ services:
         volumes_from:
             - php
             - nginx
+    test:
+        build: ./test-php
+        ports:
+            - "85:80"
+        volumes_from:
+            - php
+        links:
+            - php
+        
