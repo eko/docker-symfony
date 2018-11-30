@@ -1,0 +1,3 @@
+[submodule "symfony"]
+	path = symfony
+	url = git@bitbucket.org:bogbox/finalreportadmin.git
