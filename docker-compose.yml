@@ -20,7 +20,7 @@ services:
         links:
             - db
         extra_hosts:
-            - "docker.host:127.0.0.1"
+            - "docker-host.localhost:127.0.0.1"
     nginx:
         build: ./nginx
         ports:
