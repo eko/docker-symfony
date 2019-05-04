@@ -2,8 +2,7 @@ FROM alpine:3.8
 
 MAINTAINER Vincent Composieux <vincent.composieux@gmail.com>
 
-RUN apk add --update nginx
-RUN rm -rf /var/cache/apk/* && rm -rf /tmp/*
+RUN apk add --update --no-cache nginx
 
 COPY nginx.conf /etc/nginx/
 COPY symfony.conf /etc/nginx/conf.d/
