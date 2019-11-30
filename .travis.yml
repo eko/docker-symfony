@@ -1,7 +1,7 @@
 sudo: required
 
 env:
-  DOCKER_COMPOSE_VERSION: 1.16.1
+  DOCKER_COMPOSE_VERSION: 1.25.0
 
 services:
   - docker
@@ -15,5 +15,5 @@ before_install:
   - mkdir symfony
 
 script:
-  - docker-compose -f docker-compose.travis.yml up -d
-  - docker-compose -f docker-compose.travis.yml ps
+  - docker-compose -f docker-compose.yml up -d
+  - docker-compose -f docker-compose.yml ps
