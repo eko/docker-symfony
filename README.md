@@ -39,18 +39,22 @@ Here are the `docker-compose` built images:
 * `db`: This is the MySQL database container (can be changed to postgresql or whatever in `docker-compose.yml` file),
 * `php`: This is the PHP-FPM container including the application volume mounted on,
 * `nginx`: This is the Nginx webserver container in which php volumes are mounted too,
-* `elk`: This is a ELK stack container which uses Logstash to collect logs, send them into Elasticsearch and visualize them with Kibana.
+* `elasticsearch`: This is the Elasticsearch server used to store our web server and application logs,
+* `logstash`: This is the Logstash tool from Elastic Stack that allows to read logs and send them into our Elasticsearch server,
+* `kibana`: This is the Kibana UI that is used to render logs and create beautiful dashboards. 
 
 This results in the following running containers:
 
 ```bash
 > $ docker-compose ps
-        Name                       Command               State              Ports
---------------------------------------------------------------------------------------------
-dockersymfony_db_1      docker-entrypoint.sh mysqld      Up      0.0.0.0:3306->3306/tcp
-dockersymfony_elk_1     /usr/bin/supervisord -n -c ...   Up      0.0.0.0:81->80/tcp
-dockersymfony_nginx_1   nginx                            Up      443/tcp, 0.0.0.0:80->80/tcp
-dockersymfony_php_1     php-fpm7 -F                      Up      0.0.0.0:9000->9000/tcp
+             Name                           Command               State                 Ports
+-----------------------------------------------------------------------------------------------------------
+docker-symfony_db_1              docker-entrypoint.sh --def ...   Up      0.0.0.0:3306->3306/tcp, 33060/tcp
+docker-symfony_elasticsearch_1   /usr/local/bin/docker-entr ...   Up      0.0.0.0:9200->9200/tcp, 9300/tcp
+docker-symfony_kibana_1          /usr/local/bin/dumb-init - ...   Up      0.0.0.0:81->5601/tcp
+docker-symfony_logstash_1        /usr/local/bin/docker-entr ...   Up      5044/tcp, 9600/tcp
+docker-symfony_nginx_1           nginx                            Up      443/tcp, 0.0.0.0:80->80/tcp
+docker-symfony_php_1             php-fpm7 -F                      Up      0.0.0.0:9000->9001/tcp
 ```
 
 # Read logs

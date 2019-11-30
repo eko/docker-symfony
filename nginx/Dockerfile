@@ -1,6 +1,6 @@
-FROM alpine:3.8
+FROM alpine:3.10
 
-MAINTAINER Vincent Composieux <vincent.composieux@gmail.com>
+LABEL maintainer="Vincent Composieux <vincent.composieux@gmail.com>"
 
 RUN apk add --update --no-cache nginx
 
