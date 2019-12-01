@@ -16,7 +16,8 @@ $ git clone https://github.com/eko/docker-symfony.git
 
 Next, put your Symfony application into `symfony` folder and do not forget to add `symfony.localhost` in your `/etc/hosts` file.
 
-Make sure you adjust `database_host` in `parameters.yml` to the database container alias "db"
+Make sure you adjust `database_host` in `parameters.yml` to the database container alias "db" (for Symfony < 4)
+Make sure you adjust `DATABASE_URL` in `env` to the database container alias "db" (for Symfony >= 4)
 
 Then, run:
 
@@ -49,12 +50,12 @@ This results in the following running containers:
 > $ docker-compose ps
              Name                           Command               State                 Ports
 -----------------------------------------------------------------------------------------------------------
-docker-symfony_db_1              docker-entrypoint.sh --def ...   Up      0.0.0.0:3306->3306/tcp, 33060/tcp
-docker-symfony_elasticsearch_1   /usr/local/bin/docker-entr ...   Up      0.0.0.0:9200->9200/tcp, 9300/tcp
-docker-symfony_kibana_1          /usr/local/bin/dumb-init - ...   Up      0.0.0.0:81->5601/tcp
-docker-symfony_logstash_1        /usr/local/bin/docker-entr ...   Up      5044/tcp, 9600/tcp
-docker-symfony_nginx_1           nginx                            Up      443/tcp, 0.0.0.0:80->80/tcp
-docker-symfony_php_1             php-fpm7 -F                      Up      0.0.0.0:9000->9001/tcp
+mysql                            docker-entrypoint.sh --def ...   Up      0.0.0.0:3306->3306/tcp, 33060/tcp
+elasticsearch                    /usr/local/bin/docker-entr ...   Up      0.0.0.0:9200->9200/tcp, 9300/tcp
+kibana                           /usr/local/bin/dumb-init - ...   Up      0.0.0.0:81->5601/tcp
+logstash                         /usr/local/bin/docker-entr ...   Up      5044/tcp, 9600/tcp
+nginx                            nginx                            Up      443/tcp, 0.0.0.0:80->80/tcp
+php-fpm                          php-fpm7 -F                      Up      0.0.0.0:9000->9001/tcp
 ```
 
 # Read logs
