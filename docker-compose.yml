@@ -40,7 +40,7 @@ services:
             - ./symfony:/var/www/symfony:cached
     elasticsearch:
         container_name: elasticsearch
-        image: docker.elastic.co/elasticsearch/elasticsearch:7.4.2
+        image: docker.elastic.co/elasticsearch/elasticsearch:7.9.3
         environment:
             discovery.type: "single-node"
         ports:
@@ -51,7 +51,7 @@ services:
                     - "elasticsearch"
     logstash:
         container_name: logstash
-        image: docker.elastic.co/logstash/logstash:7.4.2
+        image: docker.elastic.co/logstash/logstash:7.9.3
         depends_on: 
             - elasticsearch
         volumes:
@@ -65,7 +65,7 @@ services:
         container_name: kibana
         depends_on: 
             - elasticsearch
-        image: docker.elastic.co/kibana/kibana:7.4.2
+        image: docker.elastic.co/kibana/kibana:7.9.3
         environment:
             SERVER_NAME: localhost
             ELASTICSEARCH_HOSTS: http://elasticsearch:9200

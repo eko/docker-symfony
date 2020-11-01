@@ -1,4 +1,4 @@
-FROM alpine:3.10
+FROM alpine:3.12
 
 LABEL maintainer="Vincent Composieux <vincent.composieux@gmail.com>"
 
