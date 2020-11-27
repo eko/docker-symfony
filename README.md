@@ -6,6 +6,8 @@ docker-symfony
 
 This is a complete stack for running Symfony 4 (latest version: Flex) into Docker containers using docker-compose tool.
 
+In case you want to test PHP8, a [`php8`](https://github.com/eko/docker-symfony/tree/php8) branch has been added.
+
 # Installation
 
 First, clone this repository:
