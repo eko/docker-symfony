@@ -2,7 +2,7 @@ version: '3.7'
 services:
     db:
         container_name: db
-        image: mysql
+        image: mysql:8.0.22
         command: ["--default-authentication-plugin=mysql_native_password"]
         ports:
             - "3306:3306"
@@ -40,7 +40,7 @@ services:
             - ./symfony:/var/www/symfony:cached
     elasticsearch:
         container_name: elasticsearch
-        image: docker.elastic.co/elasticsearch/elasticsearch:7.9.3
+        image: docker.elastic.co/elasticsearch/elasticsearch:7.10.1
         environment:
             discovery.type: "single-node"
         ports:
@@ -51,7 +51,7 @@ services:
                     - "elasticsearch"
     logstash:
         container_name: logstash
-        image: docker.elastic.co/logstash/logstash:7.9.3
+        image: docker.elastic.co/logstash/logstash:7.10.1
         depends_on: 
             - elasticsearch
         volumes:
@@ -65,7 +65,7 @@ services:
         container_name: kibana
         depends_on: 
             - elasticsearch
-        image: docker.elastic.co/kibana/kibana:7.9.3
+        image: docker.elastic.co/kibana/kibana:7.10.1
         environment:
             SERVER_NAME: localhost
             ELASTICSEARCH_HOSTS: http://elasticsearch:9200

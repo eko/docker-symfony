@@ -2,9 +2,7 @@ FROM alpine:edge
 
 LABEL maintainer="Vincent Composieux <vincent.composieux@gmail.com>"
 
-RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories
-
-RUN apk add --update --no-cache \
+RUN apk add --no-cache \
     coreutils \
     php8-fpm \
     php8-ctype \
@@ -29,12 +27,14 @@ RUN apk add --update --no-cache \
     php8-simplexml \
     php8-zip \
     php8-xmlwriter \
+    php8-pecl-xdebug \
     make \
     curl
 
 RUN curl -sS https://getcomposer.org/installer | tee composer-setup.php \
     && php8 composer-setup.php && rm composer-setup.php* \
-    && chmod +x composer.phar && mv composer.phar /usr/bin/composer
+    && chmod +x composer.phar && mv composer.phar /usr/bin/composer \
+    && ln -s /usr/bin/php8 /usr/local/bin/php
 
 COPY symfony.ini /etc/php8/conf.d/
 COPY symfony.ini /etc/php8/cli/conf.d/
@@ -42,7 +42,8 @@ COPY xdebug.ini  /etc/php8/conf.d/
 
 COPY symfony.pool.conf /etc/php8/php-fpm.d/
 
+WORKDIR /var/www/symfony
+
 CMD ["php-fpm8", "-F"]
 
-WORKDIR /var/www/symfony
 EXPOSE 9001
