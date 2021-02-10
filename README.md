@@ -4,9 +4,7 @@ docker-symfony
 [![Build Status](https://secure.travis-ci.org/eko/docker-symfony.png?branch=master)](http://travis-ci.org/eko/docker-symfony)
 
 
-This is a complete stack for running Symfony 4 (latest version: Flex) into Docker containers using docker-compose tool.
-
-In case you want to test PHP8, a [`php8`](https://github.com/eko/docker-symfony/tree/php8) branch has been added.
+This is a complete stack for running Symfony 5 (latest version), PHP8 and ELK stack using docker-compose tool.
 
 # Installation
 

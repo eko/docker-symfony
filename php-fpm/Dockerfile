@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM alpine:3.13
 
 LABEL maintainer="Vincent Composieux <vincent.composieux@gmail.com>"
 
@@ -27,7 +27,7 @@ RUN apk add --no-cache \
     php8-simplexml \
     php8-zip \
     php8-xmlwriter \
-    php8-pecl-xdebug \
+    php8-pecl-apcu \
     make \
     curl
 
