@@ -31,6 +31,12 @@ RUN apk add --no-cache \
     make \
     curl
 
+# Allow to enable php8-xdebug
+ARG ENABLE_PHP_XDEBUG
+RUN if [[ "$ENABLE_PHP_XDEBUG" == "1" ]]; then \
+        apk add --no-cache php8-pecl-xdebug; \
+    fi
+
 RUN curl -sS https://getcomposer.org/installer | tee composer-setup.php \
     && php8 composer-setup.php && rm composer-setup.php* \
     && chmod +x composer.phar && mv composer.phar /usr/bin/composer \
