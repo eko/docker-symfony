@@ -37,6 +37,9 @@ RUN if [[ "$ENABLE_PHP_XDEBUG" == "1" ]]; then \
         apk add --no-cache php8-pecl-xdebug; \
     fi
 
+RUN apk add --update nodejs npm \
+    && npm install --global yarn
+
 COPY symfony.ini /etc/php8/conf.d/
 COPY symfony.ini /etc/php8/cli/conf.d/
 COPY xdebug.ini  /etc/php8/conf.d/
