@@ -18,6 +18,7 @@ services:
             context: ./php-fpm
             args:
                 ENABLE_PHP_XDEBUG: 0
+                SYMFONY_CLI_VERSION: 4.23.2
         ports:
             - "9000:9001"
         volumes:

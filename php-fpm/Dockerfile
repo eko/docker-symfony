@@ -37,7 +37,8 @@ RUN if [[ "$ENABLE_PHP_XDEBUG" == "1" ]]; then \
         apk add --no-cache php8-pecl-xdebug; \
     fi
 
-RUN wget https://github.com/symfony/cli/releases/download/v4.23.2/symfony_linux_amd64.gz \
+ARG SYMFONY_CLI_VERSION
+RUN wget https://github.com/symfony/cli/releases/download/v$SYMFONY_CLI_VERSION/symfony_linux_amd64.gz \
     && gzip -d symfony_linux_amd64.gz \
     && mv symfony_linux_amd64 symfony \
     && chmod +x symfony \
