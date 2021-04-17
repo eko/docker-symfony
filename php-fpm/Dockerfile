@@ -37,6 +37,18 @@ RUN if [[ "$ENABLE_PHP_XDEBUG" == "1" ]]; then \
         apk add --no-cache php8-pecl-xdebug; \
     fi
 
+RUN curl -sS https://getcomposer.org/installer | tee composer-setup.php \
+    && php8 composer-setup.php && rm composer-setup.php* \
+    && chmod +x composer.phar && mv composer.phar /usr/bin/composer \
+    && ln -s /usr/bin/php8 /usr/local/bin/php
+
+ARG SYMFONY_CLI_VERSION
+RUN wget https://github.com/symfony/cli/releases/download/v$SYMFONY_CLI_VERSION/symfony_linux_amd64.gz \
+    && gzip -d symfony_linux_amd64.gz \
+    && mv symfony_linux_amd64 symfony \
+    && chmod +x symfony \
+    && mv symfony /usr/local/bin/
+
 RUN apk add --update nodejs npm \
     && npm install --global yarn
 
