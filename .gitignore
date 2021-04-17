@@ -1,2 +1,6 @@
 /logs
 /symfony
+
+# IDE setting
+## PhpStorm
+.idea
