@@ -49,6 +49,9 @@ RUN wget https://github.com/symfony/cli/releases/download/v$SYMFONY_CLI_VERSION/
     && chmod +x symfony \
     && mv symfony /usr/local/bin/
 
+RUN apk add --update nodejs npm \
+    && npm install --global yarn
+
 COPY symfony.ini /etc/php8/conf.d/
 COPY symfony.ini /etc/php8/cli/conf.d/
 COPY xdebug.ini  /etc/php8/conf.d/
