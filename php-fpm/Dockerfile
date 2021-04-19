@@ -28,6 +28,7 @@ RUN apk add --no-cache \
     php8-simplexml \
     php8-zip \
     php8-xmlwriter \
+    php8-sodium \
     php8-pecl-apcu \
     make \
     curl
