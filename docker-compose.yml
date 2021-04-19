@@ -11,6 +11,8 @@ services:
             MYSQL_DATABASE: symfony
             MYSQL_USER: symfony
             MYSQL_PASSWORD: symfony
+        volumes:
+            - ./db:/var/lib/mysql
 
     php:
         container_name: php-fpm
