@@ -42,6 +42,13 @@ RUN curl -sS https://getcomposer.org/installer | tee composer-setup.php \
     && chmod +x composer.phar && mv composer.phar /usr/bin/composer \
     && ln -s /usr/bin/php8 /usr/local/bin/php
 
+ARG SYMFONY_CLI_VERSION
+RUN wget https://github.com/symfony/cli/releases/download/v$SYMFONY_CLI_VERSION/symfony_linux_amd64.gz \
+    && gzip -d symfony_linux_amd64.gz \
+    && mv symfony_linux_amd64 symfony \
+    && chmod +x symfony \
+    && mv symfony /usr/local/bin/
+
 COPY symfony.ini /etc/php8/conf.d/
 COPY symfony.ini /etc/php8/cli/conf.d/
 COPY xdebug.ini  /etc/php8/conf.d/

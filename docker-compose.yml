@@ -18,12 +18,13 @@ services:
             context: ./php-fpm
             args:
                 ENABLE_PHP_XDEBUG: 0
+                SYMFONY_CLI_VERSION: 4.23.2
         ports:
             - "9000:9001"
         volumes:
             - ./symfony:/var/www/symfony:cached
             - ./logs/symfony:/var/www/symfony/var/log:cached
-        depends_on: 
+        depends_on:
             - db
 
     nginx:
@@ -31,7 +32,7 @@ services:
         build: ./nginx
         ports:
             - "80:80"
-        depends_on: 
+        depends_on:
             - php
         volumes:
             - ./logs/nginx:/var/log/nginx:cached
@@ -48,7 +49,7 @@ services:
     logstash:
         container_name: logstash
         image: docker.elastic.co/logstash/logstash:7.10.1
-        depends_on: 
+        depends_on:
             - elasticsearch
         volumes:
             - ./elk/logstash/pipelines.yml:/usr/share/logstash/config/pipelines.yml:cached
@@ -58,7 +59,7 @@ services:
 
     kibana:
         container_name: kibana
-        depends_on: 
+        depends_on:
             - elasticsearch
         image: docker.elastic.co/kibana/kibana:7.10.1
         environment:
