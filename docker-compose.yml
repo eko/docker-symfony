@@ -17,7 +17,9 @@ services:
         build:
             context: ./php-fpm
             args:
-                ENABLE_PHP_XDEBUG: 0
+                PHP_XDEBUG_MODE: ${PHP_XDEBUG_MODE}
+                PHP_XDEBUG_CLIENT_PORT: ${PHP_XDEBUG_CLIENT_PORT}
+                PHP_XDEBUG_CLIENT_HOST: ${PHP_XDEBUG_CLIENT_HOST}
                 SYMFONY_CLI_VERSION: 4.23.2
         ports:
             - "${PHP_PORT}:9001"
