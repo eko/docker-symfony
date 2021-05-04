@@ -4,6 +4,7 @@ LABEL maintainer="Vincent Composieux <vincent.composieux@gmail.com>"
 
 RUN apk add --no-cache \
     coreutils \
+    gettext \
     php8-fpm \
     php8-ctype \
     php8-curl \
@@ -31,11 +32,19 @@ RUN apk add --no-cache \
     make \
     curl
 
-# Allow to enable php8-xdebug
-ARG ENABLE_PHP_XDEBUG
-RUN if [[ "$ENABLE_PHP_XDEBUG" == "1" ]]; then \
+# Enable php8-xdebug if $PHP_XDEBUG_MODE is not empty
+ARG PHP_XDEBUG_MODE=off
+ARG PHP_XDEBUG_CLIENT_PORT=5902
+ARG PHP_XDEBUG_CLIENT_HOST=host.docker.internal
+COPY xdebug.ini  /etc/php8/conf.d/xdebug.ini.template
+RUN if [[ "$PHP_XDEBUG_MODE" != "" ]]; then \
         apk add --no-cache php8-pecl-xdebug; \
+        export PHP_XDEBUG_MODE=$PHP_XDEBUG_MODE; \
+        export PHP_XDEBUG_CLIENT_PORT=$PHP_XDEBUG_CLIENT_PORT; \
+        export PHP_XDEBUG_CLIENT_HOST=$PHP_XDEBUG_CLIENT_HOST; \
+        envsubst < /etc/php8/conf.d/xdebug.ini.template > /etc/php8/conf.d/xdebug.ini; \
     fi
+RUN rm -f /etc/php8/conf.d/xdebug.ini.template
 
 RUN curl -sS https://getcomposer.org/installer | tee composer-setup.php \
     && php8 composer-setup.php && rm composer-setup.php* \
@@ -54,7 +63,6 @@ RUN apk add --update nodejs npm \
 
 COPY symfony.ini /etc/php8/conf.d/
 COPY symfony.ini /etc/php8/cli/conf.d/
-COPY xdebug.ini  /etc/php8/conf.d/
 
 COPY symfony.pool.conf /etc/php8/php-fpm.d/
 

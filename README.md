@@ -58,6 +58,10 @@ nginx                            nginx                            Up      443/tc
 php-fpm                          php-fpm7 -F                      Up      0.0.0.0:9000->9001/tcp
 ```
 
+# Environment Customizations
+
+You can customize the exposed ports and other parameters changing the docker-compose .env file.
+
 # Read logs
 
 You can access Nginx and Symfony application logs in the following directories on your host machine:
