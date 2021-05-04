@@ -1,5 +1,6 @@
 /logs
 /symfony
+/db
 
 # IDE setting
 ## PhpStorm
