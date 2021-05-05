@@ -21,6 +21,7 @@ RUN apk add --no-cache \
     php8-pdo_mysql \
     php8-mysqli \
     php8-xml \
+    php8-xsl \
     php8-zlib \
     php8-phar \
     php8-tokenizer \
@@ -28,6 +29,7 @@ RUN apk add --no-cache \
     php8-simplexml \
     php8-zip \
     php8-xmlwriter \
+    php8-sodium \
     php8-pecl-apcu \
     make \
     curl
