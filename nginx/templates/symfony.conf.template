@@ -1,5 +1,5 @@
 server {
-    server_name symfony.localhost;
+    server_name ${NGINX_SYMFONY_SERVER_NAME};
     root /var/www/symfony/public;
 
 

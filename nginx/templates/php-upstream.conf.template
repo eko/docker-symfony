@@ -1,0 +1,3 @@
+upstream php-upstream {
+    server php:9001;
+}

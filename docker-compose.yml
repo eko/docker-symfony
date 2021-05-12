@@ -33,11 +33,20 @@ services:
 
     nginx:
         container_name: nginx
-        build: ./nginx
+        build: 
+            context: ./nginx
+            args:
+                NGINX_SYMFONY_SERVER_NAME: ${NGINX_SYMFONY_SERVER_NAME}
+                KIBANA_PORT: ${KIBANA_PORT}
         ports:
             - "${NGINX_PORT}:80"
         depends_on:
             - php
+        environment:
+            - NGINX_ENVSUBST_OUTPUT_DIR=/etc/nginx/conf.d
+            - NGINX_ENVSUBST_TEMPLATE_DIR=/etc/nginx/templates
+            - NGINX_ENVSUBST_TEMPLATE_SUFFIX=.template
+            - NGINX_SYMFONY_SERVER_NAME=${NGINX_SYMFONY_SERVER_NAME}
         volumes:
             - ./logs/nginx:/var/log/nginx:cached
             - ./symfony:/var/www/symfony:cached

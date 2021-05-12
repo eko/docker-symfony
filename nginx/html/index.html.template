@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>docker-symfony</title>
+    </head>
+<body>
+    <h1>
+        <a href="https://github.com/eko/docker-symfony" target="_blank">docker-symfony</a>
+    </h1>
+    <p>
+        A complete stack for running Symfony 5 (latest version), PHP8 and ELK stack using docker-compose tool.<br>
+    </p>
+    <p>
+        <b>Note</b><br>
+        Remember to add <code>${NGINX_SYMFONY_SERVER_NAME}</code> in your <code>/etc/hosts</code> file.<br>
+    </p>
+    <h2>Index</h2>
+    <ul>
+        <li><a href="http://${NGINX_SYMFONY_SERVER_NAME}" target="_blank">Symfony</a></li>
+        <li><a href="http://localhost:${KIBANA_PORT}/app/kibana_overview/#/" target="_blank">Kibana</a></li>
+    </ul>
+</body>
+</html>
