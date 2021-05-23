@@ -75,7 +75,7 @@ You can also use Kibana to visualize Nginx & Symfony logs by visiting `http://sy
 
 # Use xdebug!
 
-Start by updating your `docker-compose.yaml` file with `ENABLE_PHP_XDEBUG: 1` under the `php` service.
+Start by updating your docker-compose .env file with `PHP_XDEBUG_MODE=debug` (or any other configuration you need as seen in the [Xdebug documentation](https://xdebug.org/docs/all_settings#mode)).
 You will need to re-build the php container for this value to take effect.
 
 Configure your IDE to use port 5902 for XDebug.
