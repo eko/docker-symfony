@@ -1,4 +1,4 @@
-FROM nginx:1.19.6
+FROM nginx:1.21.5
 
 LABEL maintainer="Vincent Composieux <vincent.composieux@gmail.com>"
 

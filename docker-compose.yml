@@ -2,7 +2,7 @@ version: '3.9'
 services:
     db:
         container_name: db
-        image: mysql:8.0.22
+        image: mysql:8.0.27
         command: ["--default-authentication-plugin=mysql_native_password"]
         ports:
             - "${MYSQL_PORT}:3306"
@@ -22,7 +22,7 @@ services:
                 PHP_XDEBUG_MODE: ${PHP_XDEBUG_MODE}
                 PHP_XDEBUG_CLIENT_PORT: ${PHP_XDEBUG_CLIENT_PORT}
                 PHP_XDEBUG_CLIENT_HOST: ${PHP_XDEBUG_CLIENT_HOST}
-                SYMFONY_CLI_VERSION: 4.23.2
+                SYMFONY_CLI_VERSION: 4.27.4
         ports:
             - "${PHP_PORT}:9001"
         volumes:
@@ -32,7 +32,7 @@ services:
             - db
 
     phpmyadmin:
-        image: phpmyadmin
+        image: phpmyadmin:5.1.1
         container_name: phpmyadmin
         environment:
             - PMA_HOST=db
@@ -64,7 +64,7 @@ services:
 
     elasticsearch:
         container_name: elasticsearch
-        image: docker.elastic.co/elasticsearch/elasticsearch:7.10.1
+        image: docker.elastic.co/elasticsearch/elasticsearch:7.16.2
         environment:
             discovery.type: "single-node"
         ports:
@@ -72,7 +72,7 @@ services:
 
     logstash:
         container_name: logstash
-        image: docker.elastic.co/logstash/logstash:7.10.1
+        image: docker.elastic.co/logstash/logstash:7.16.2
         depends_on:
             - elasticsearch
         volumes:
@@ -85,7 +85,7 @@ services:
         container_name: kibana
         depends_on:
             - elasticsearch
-        image: docker.elastic.co/kibana/kibana:7.10.1
+        image: docker.elastic.co/kibana/kibana:7.16.2
         environment:
             SERVER_NAME: localhost
             ELASTICSEARCH_HOSTS: http://elasticsearch:9200
