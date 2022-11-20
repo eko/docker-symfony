@@ -1,8 +1,7 @@
 version: '3.9'
 services:
     db:
-        container_name: db
-        image: mysql:8.0.27
+        image: mysql:8.0.31
         command: ["--default-authentication-plugin=mysql_native_password"]
         ports:
             - "${MYSQL_PORT}:3306"
@@ -15,7 +14,6 @@ services:
             - ./db:/var/lib/mysql
 
     php:
-        container_name: php-fpm
         build:
             context: ./php-fpm
             args:
@@ -32,8 +30,7 @@ services:
             - db
 
     phpmyadmin:
-        image: phpmyadmin:5.1.1
-        container_name: phpmyadmin
+        image: phpmyadmin:5.2.0
         environment:
             - PMA_HOST=db
             - PMA_USER=root
@@ -43,7 +40,6 @@ services:
         restart: always
 
     nginx:
-        container_name: nginx
         build: 
             context: ./nginx
             args:
@@ -63,16 +59,15 @@ services:
             - ./symfony:/var/www/symfony:cached
 
     elasticsearch:
-        container_name: elasticsearch
-        image: docker.elastic.co/elasticsearch/elasticsearch:7.16.2
+        image: docker.elastic.co/elasticsearch/elasticsearch:8.5.1
         environment:
             discovery.type: "single-node"
+            xpack.security.enabled: false
         ports:
             - "${ELASTICSEARCH_PORT}:9200"
 
     logstash:
-        container_name: logstash
-        image: docker.elastic.co/logstash/logstash:7.16.2
+        image: docker.elastic.co/logstash/logstash:8.5.1
         depends_on:
             - elasticsearch
         volumes:
@@ -82,10 +77,9 @@ services:
             - ./logs/nginx:/var/log/nginx:cached
 
     kibana:
-        container_name: kibana
         depends_on:
             - elasticsearch
-        image: docker.elastic.co/kibana/kibana:7.16.2
+        image: docker.elastic.co/kibana/kibana:8.5.1
         environment:
             SERVER_NAME: localhost
             ELASTICSEARCH_HOSTS: http://elasticsearch:9200
